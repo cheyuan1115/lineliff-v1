@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>今日個人星象運勢</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background: #fffef6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 1.5em;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 2em;
+      margin-top: 2em;
+    }
+    h1 {
+      font-size: 1.6em;
+      color: #4f772d;
+      text-align: center;
+    }
+    .report {
+      font-size: 1.1em;
+      line-height: 1.8;
+      white-space: pre-line;
+      margin-top: 1em;
+    }
+    .footer {
+      margin-top: 2em;
+      text-align: center;
+      font-size: 0.85em;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>🌞 今日個人星象運勢</h1>
+      <div class="report" id="report">讀取中...</div>
+    </div>
+    <div class="footer">由「藤指美麗」提供占星香氛指引</div>
+  </div>
+  <script>
+    const userId = new URLSearchParams(location.search).get("userId");
+    const url = "https://script.google.com/macros/s/AKfycbwiZpI9cH_YQIPXpu733EaVnj69LQUM_aSZTWB7f2sdudnocQxD5pNcozd5wHkojYA_LQ/exec?userId=" + userId;
+    fetch(url)
+      .then(res => res.text())
+      .then(text => document.getElementById("report").innerHTML = text)
+      .catch(() => document.getElementById("report").innerHTML = "無法讀取您的運勢，請稍後再試。");
+  </script>
+</body>
+</html>
